@@ -1,0 +1,52 @@
+<p>feedback works!</p>
+<div *ngIf="msg" class="alert alert-success" role="alert">
+    {{msg}} <a routerLink="/profile" class="alert-link">Back to Profile!</a>
+</div>
+<div class="feedback">
+    <div class="title">MEET YOUR DOCTOR-FEEDBACK</div>
+
+    <h2>Hey! {{ patentDetail.details.name}}</h2>
+    <p>
+        Thank you for getting our service. We would like to know how we performed. Please spare some
+        moments to give us your valuable feedback as it will help us in improving our service.
+    </p>
+
+</div>
+
+<div>
+
+
+
+    <form method="post" action="#action-url">
+        <label for="m_3189847521540640526commentText">1. Any Other suggestions:</label><br /><br />
+        <textarea [formControl]="comment" cols="75" name="commentText" rows="5" width="100%"></textarea>
+
+        <div class="clear"></div>
+        <hr class="survey-hr">
+
+        <h4>Please rate your service experience for the following parameters</h4>
+        <label>2. Your overall experience with us ?</label><br>
+        <div class="star-rating">
+
+            <div class="star-input">
+                <input [formControl]="rating" [value]=5 type="radio" name="rating" id="rating-5">
+                <label for="rating-5" class="fas fa-star"></label>
+                <input [formControl]="rating" [value]=4 type="radio" name="rating" id="rating-4">
+                <label for="rating-4" class="fas fa-star"></label>
+                <input [formControl]="rating" [value]=3 type="radio" name="rating" id="rating-3">
+                <label for="rating-3" class="fas fa-star"></label>
+                <input [formControl]="rating" [value]=2 type="radio" name="rating" id="rating-2">
+                <label for="rating-2" class="fas fa-star"></label>
+                <input [formControl]="rating" [value]=1 type="radio" name="rating" id="rating-1">
+                <label for="rating-1" class="fas fa-star"></label>
+
+
+                <button type="submit" class="btn btn-info" [value]="rating" (click)="commentfunc() ">Ok !</button>
+            </div>
+        </div>
+
+
+
+    </form>
+
+</div>

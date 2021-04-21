@@ -1,0 +1,91 @@
+  
+<h1>New Appointment</h1>
+
+<p>Search</p>
+
+<div *ngIf="msg"  class="alert alert-success" role="alert">
+{{msg}} <a href="#" class="alert-link"></a>
+</div>
+
+
+<form>
+  <div class="mb-3">
+  
+    <input type="text" [formControl]="name" class="form-control" id="exampleInputEmail1"
+      placeholder="Enter Name you want to search">
+    <input type="text" [formControl]="location" class="form-control" id="exampleInputEmail1"
+      placeholder="or enter location you want to search">
+    <input type="text" [formControl]="speciality" class="form-control" id="exampleInputEmail1"
+      placeholder="or enter speciality you want to search">
+  
+  </div>
+
+  <button type="submit" (click)="search()" class="btn btn-primary">Search</button>
+</form>
+
+
+
+
+
+
+
+
+<div class="par">
+  <ul *ngFor="let x of docProfiles">
+  <p><b>Name :</b> {{x.name}}</p>
+  <p><b>Specialities :</b> {{x.specialities}}</p>
+  <p><b>Location :</b> {{x.address.province}}, {{x.address.district}}.</p>
+  <button type="submit" class="btn btn-primary" (click)="select(x)">Select this Doctor</button>
+  <br>
+  <br>
+  </ul>
+</div>
+
+
+ 
+
+
+
+
+<div class="landing-page">
+  <div class="form-appointment">
+    <div class="wpcf7" id="wpcf7-f560-p590-o1">
+      <form action="/landing-page-template-do-not-delete/#wpcf7-f560-p590-o1" method="post" class="wpcf7-form"
+        novalidate="novalidate" _lpchecked="1">
+        <div *ngIf=doctorId>
+          <h1>Appointment Request Conformation</h1>
+        </div>
+        <div *ngIf=doctorId class="par">
+          <div>
+            <h2>You have selected!</h2>
+          </div>
+          <ul>
+            <p><b>Doctor Name :</b> {{doctorId.name}}</p>
+            <p><b>Specialities :</b> {{doctorId.specialities}}</p>
+            <p><b>Location :</b> {{doctorId.address.province}}, {{doctorId.address.district}}</p>
+          </ul>
+          <div>
+            <p>please check that your selection is correct!</p>
+          </div>
+        </div>
+        <div class="group">
+          <div style="width: 100%; float: left;">
+            <input type="date" [formControl]="date" class="form-control" id="exampleInputEmail1"
+              placeholder="Enter date you want to"><br>
+            <input type="time" [formControl]="time" class="form-control" id="exampleInputEmail1"
+              placeholder="Enter time you want to search"><br>
+
+            <div *ngIf="msg2" class="alert alert-success" role="alert">
+              {{msg2}} <a routerLink="/profile" class="alert-link">Back to Profile</a>
+            </div>
+
+
+          </div>
+        </div>
+        <div><input type="submit" (click)="newAppointment()" value="Request My Appointment"
+            class="wpcf7-form-control wpcf7-submit"></div>
+        <div class="wpcf7-response-output wpcf7-display-none"></div>
+      </form>
+    </div>
+  </div>
+</div>

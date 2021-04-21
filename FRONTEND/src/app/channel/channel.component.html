@@ -1,0 +1,48 @@
+<p>channel works!</p>
+<div *ngIf="msg"  class="alert alert-success" role="alert">
+    {{msg}} <a routerLink="/profile" class="alert-link">Back to Profile!</a>
+</div>
+<div *ngIf="msg"  class="alert alert-success" role="alert">
+    {{msg2}} <a routerLink="/profile" class="alert-link">Back to Profile!</a>
+</div>
+
+
+
+
+<div *ngIf="!isDoctor" class="w3-col m12" class="w3-container w3-card w3-blue w3-round ">
+    <div >
+        
+   
+        <ul  *ngFor="let x of approvedAppointmentData" class="w3-container w3-card w3-white w3-round w3-center">
+        
+            <p><b>Date : </b>{{x.date}}</p>
+            <p><b>Time : </b>{{x.time}}</p>
+            <p><b>Zoom Meeting Link / other:  </b>{{x.zoomLink}}</p>
+            <button class="w3-button w3-block w3-theme-l4" routerLink="/feedback" >Give feedback</button>
+            <button class="w3-button w3-block w3-theme-l1" (click)="Delete(x)">Delete</button>
+            <br>
+            <br>
+        
+        </ul>
+        
+    </div>
+</div>
+
+
+<div *ngIf="isDoctor" class="w3-col m12" class="w3-container w3-card w3-blue w3-round ">
+    <div class="w3-container w3-card w3-white w3-round w3-center">
+        
+        <form> 
+            <div >
+                <p><label><b>Date : </b>{{approvedAppointmentData.date}}</label></p>
+                <p><label><b>Time : </b>{{approvedAppointmentData.time}} </label></p>
+                <p><label><b>Zoom Meeting Link : </b><input type="text" [formControl]="zoomLink" class="form-control" required></label></p>
+                <p><textarea  [formControl]="zoomLink" cols="75" name="commentText" rows="5" width="100%" placeholder="or another medium of communication that can be communicate with"></textarea></p>
+                <button class="w3-button w3-block w3-theme-l4" (click)="sendMeetingLink()">Send Meeting Link</button>
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+

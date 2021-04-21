@@ -1,0 +1,230 @@
+<p><button class="w3-button w3-block w3-theme-l4" (click)=logout() routerLink='/lo'>log out</button></p>
+
+<div *ngIf="msg"  class="alert alert-success" role="alert">
+  {{msg}} <a href="#" class="alert-link"></a>
+</div>
+
+<div *ngIf=user class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div *ngIf=user class="w3-card w3-round w3-white">
+        <div class="w3-container">
+          <h2 *ngIf=isDoctor class="w3-center">Welcome Doctor ! </h2>
+          <h2 *ngIf=!isDoctor class="w3-center">Welcome User !</h2>
+          <br>
+          <h3>My Profile</h3>
+
+          <hr>
+          <p class="w3-center"><img src="../../assets/smart-hospital/smart-hospital.png" width="100" height="100"
+              alt="Photo of Doctor" class="w3-circle"></p>
+
+          <h1><i class="  w3-text-theme"></i> {{user.details.name}} </h1>
+
+          <div *ngIf=isDoctor class=" w3-left-align">
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>{{user.details.specialities}}</p>
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>{{user.details.qualifications}}</p>
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>{{user.details.channelingCentre}}</p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{user.details.hospital}}</p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{user.details.nursingHome}}</p>
+
+          </div>
+
+          <div *ngIf=!isDoctor class=" w3-left-align">
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{user.details.address}}</p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{user.details.contactNumber}}</p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{user.details.locations}}</p>
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>{{user.details.email}}</p>
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>{{user.details._id}}</p>
+          </div>
+
+          <button (click)=deleteAcc(user.details._id) class="w3-button w3-block w3-theme-l1 ">Delete my account</button>
+        </div>
+      </div>
+      <br>
+
+
+      <br>
+
+      <!-- Accordion -->
+
+
+      <div *ngIf=!isDoctor class="w3-container w3-card w3-white w3-round">
+        <div>
+          <p><strong>Pending Appointments:</strong></p>
+          <br>
+          <br>
+          <div class="par">
+            <ul *ngFor="let x of getmyappointment" >
+              <div *ngIf=!x.approve class="w3-container w3-card w3-blue w3-round w3-margin-right">
+                <p><b>Approval :</b>Not yet</p>
+                <p><b>They need to channel on :</b>{{x.date}}</p>
+                <p><b>They need channel at :</b>{{x.time}}</p>
+                <p><b>Appointment ID :</b>{{x._id}}</p>
+                <button (click)=deleteAppointment(x._id) class="btn btn-danger">Cancel this appointment</button>
+                <br>
+
+              </div>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      
+
+
+
+      <div *ngIf=isDoctor class="w3-container w3-card w3-white w3-round "><br>
+        <h2>Appointment Requests</h2>
+        <div>
+          <ul *ngFor="let x of getmyappointment">
+
+            <div *ngIf=!x.approve class="w3-container w3-card w3-blue w3-round w3-margin-right">
+              <p><b>Approval :</b>Not yet</p>
+              <p><b>They need to channel on :</b>{{x.date}}</p>
+              <p><b>They need channel at :</b>{{x.time}}</p>
+              <p><b>Appointment ID :</b>{{x._id}}</p>
+              <div><button class="w3-button w3-block w3-theme-l4" type="submit" (click)="clickApprove(x)">Confirm ThisAppointment</button></div>
+              <div *ngIf="msg" class="alert alert-success" role="alert">
+                {{msg}} <a href="#" class="alert-link"></a>
+              </div>
+            </div>
+
+
+
+
+
+          </ul>
+        </div>
+
+      </div>
+
+
+
+
+      <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class="w3-theme">
+      <div class="w3-col m9">
+        <div class="w3-container w3-card w3-white w3-round w3-margin">
+          <div class="w3-row-padding">
+            <div class="w3-container">
+
+              <h1>My Appointments</h1>
+              <p> Wednesday,March 30.2021 </p>
+
+
+
+            </div>
+          </div>
+
+
+
+
+          <div *ngIf=!isDoctor class="w3-col m12">
+
+            <p>To add new appointment click below</p>
+            <p><button routerLink="/appointment" class="w3-button w3-block w3-theme-l4">Create New Appointment</button></p>
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+          <!-- End Middle Column -->
+        </div>
+        <br>
+        <br>
+
+
+        <hr>
+
+
+
+
+        <div>
+          <div class="w3-container"><br>
+            <h1>Ready to Channel</h1>
+            <div>
+              <ul *ngFor="let x of getmyappointment">
+                <div *ngIf=x.approve class="w3-container w3-card w3-white w3-round w3-margin">
+                  <p><b> Approved:</b>Yes</p>
+                  <p><b>Appointment Date :</b>{{x.date}}</p>
+                  <p><b>Appointment Time :</b>{{x.time}}</p>
+                  <p><b>Appointment ID :</b>{{x._id}}</p>
+                  <p><button class="w3-button w3-block w3-theme-l1 " (click)=sendApprovedAppoinment(x)
+                      routerLink='/channel'>go to Channel </button></p>
+                  <br>
+                  <br>
+
+                </div>
+
+              </ul>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+        <!-- End Page Container -->
+      </div>
+      <br>
+      <br>
+
+
+
+      <div class="w3-row">
+      
+        <div *ngIf=isDoctor class="w3-col m12">
+
+          <div class="w3-container w3-card  w3-round w3-margin">
+            <p><strong>My feedbacks</strong></p>
+            <br>
+        
+        
+            <ul *ngFor="let x of feedbacks">
+              <p><b>Patient Id :</b> {{x.patientId}} </p>
+              <p><b>Said that :</b> {{x.comment}}</p>
+              <p>Gives you {{x.rate}} stars</p>
+              <br>
+            </ul>
+        
+          </div>
+
+      
+      
+      
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+  <footer class="w3-container w3-theme-d3 w3-padding-16">
+    <h5>CYBER TERRORISTS TEAM © 2021 all right receved</h5>
+  </footer>
+
+  <footer class="w3-container w3-theme-d5">
+    <p>Powered by Team Cyber Terrorists of Faculty of Information Technology of University of Moratuwa</p>
+  </footer>
+</div>
