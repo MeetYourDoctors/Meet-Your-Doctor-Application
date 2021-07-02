@@ -1,5 +1,5 @@
 # Meet-Your-Doctor-Application
-Hello Everyone! We are team Cyber Terrorists. This is our first project of Web Technology Module of Level 1 Semester 2 named MEET YOUR DOCTOR Application. There is a backend by using Node and Frontend by using Angular freamwork. We use MongoDB to develop the database part.You can see our project using this link - https://github.com/MeetYourDoctors/Meet-Your-Doctor-Application
+Hello Everyone! We are team Cyber Terrorists. This is our first project of Web Technology Module of Level 1 Semester 2 named MEET YOUR DOCTOR Application. There is a backend by using Node and Express. Frontend by using Angular 11 freamwork. We use MongoDB to develop the database part.You can see our project using this link - https://github.com/MeetYourDoctors/Meet-Your-Doctor-Application
 
 MEET YOUR DOCTOR is a service that offers convenient booking facilities for Doctor Appointments at island wide prominent channelling centers and nursing homes in Sri Lanka.
 In here we wish to computerize the process of registering doctors to channelling centres and providing an application to channel doctors at the convenience of home.Improve effectiveness and efficiency of work between doctor and patient.
